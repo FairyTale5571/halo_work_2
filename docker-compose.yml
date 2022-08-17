@@ -1,0 +1,33 @@
+version: '3.4'
+
+services:
+  proxy:
+    container_name: proxy
+    build:
+      context: ./services/proxy
+      dockerfile: Dockerfile
+    restart: always
+    env_file: .env
+    ports:
+      - ${PORT_PROXY}:${PORT_PROXY}
+
+  auth:
+    container_name: auth
+    build:
+      context: ./services/auth
+      dockerfile: Dockerfile
+    restart: always
+    env_file: .env
+    ports:
+      - ${PORT_AUTH}:${PORT_AUTH}
+
+
+  user:
+    container_name:   user
+    build:
+      context: ./services/user
+      dockerfile: Dockerfile
+    restart: always
+    env_file: .env
+    ports:
+      - ${PORT_USER}:${PORT_USER}
