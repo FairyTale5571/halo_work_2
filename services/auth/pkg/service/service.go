@@ -13,8 +13,6 @@ const (
 
 type Authorization interface {
 	Authorize(username string) bool
-	GenerateToken(username string) (string, error)
-	ParseToken(token string) (string, error)
 }
 
 type Service struct {
