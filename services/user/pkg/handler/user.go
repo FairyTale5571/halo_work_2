@@ -9,7 +9,9 @@ import (
 )
 
 func (h *Handler) microserviceName(c *gin.Context) {
-	c.String(http.StatusOK, "user-microservice")
+	c.JSON(http.StatusOK, gin.H{
+		"service": "user-microservice",
+	})
 }
 
 func (h *Handler) profile(c *gin.Context) {
@@ -32,15 +34,15 @@ func (h *Handler) checkAuth(username string) int {
 	client := &http.Client{}
 	req, err := http.NewRequest(http.MethodGet, fmt.Sprintf("%s:%s/auth", os.Getenv("URL"), os.Getenv("PORT_AUTH")), nil)
 	if err != nil {
-		return 500
+		return http.StatusInternalServerError
 	}
 	req.Header.Add("Username", username)
 	res, err := client.Do(req)
 	if err != nil {
-		return 500
+		return http.StatusInternalServerError
 	}
 	if res.StatusCode != http.StatusOK {
 		return 401
 	}
-	return 200
+	return http.StatusOK
 }

@@ -8,6 +8,12 @@ import (
 
 func (h *Handler) auth(c *gin.Context) {
 	username := c.Request.Header.Get("Username")
+	if username == "" {
+		c.JSON(http.StatusUnauthorized, gin.H{
+			"message": "empty auth header",
+		})
+		return
+	}
 	u := h.services.Authorize(username)
 	if !u {
 		c.JSON(http.StatusUnauthorized, gin.H{
