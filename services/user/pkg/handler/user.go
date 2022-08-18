@@ -32,7 +32,7 @@ func (h *Handler) profile(c *gin.Context) {
 
 func (h *Handler) checkAuth(username string) int {
 	client := &http.Client{}
-	req, err := http.NewRequest(http.MethodGet, fmt.Sprintf("%s:%s/auth", os.Getenv("URL"), os.Getenv("PORT_AUTH")), nil)
+	req, err := http.NewRequest(http.MethodGet, fmt.Sprintf("%s:%s/auth", os.Getenv("URL"), os.Getenv("PORT_AUTH")), http.NoBody)
 	if err != nil {
 		return http.StatusInternalServerError
 	}

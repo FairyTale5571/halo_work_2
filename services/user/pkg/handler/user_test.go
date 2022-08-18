@@ -15,8 +15,8 @@ func Test_user(t *testing.T) {
 	tests := []struct {
 		name         string
 		header       string
-		expectedCode int
 		expectedBody string
+		expectedCode int
 	}{
 		{
 			name:         "Ok",
@@ -46,7 +46,6 @@ func Test_user(t *testing.T) {
 
 			assert.Equal(t, tt.expectedCode, w.Code)
 			assert.Equal(t, tt.expectedBody, w.Body.String())
-
 		})
 	}
 }
@@ -56,8 +55,8 @@ func Test_profile(t *testing.T) {
 		name         string
 		header       string
 		inputHeader  string
-		expectedCode int
 		expectedBody string
+		expectedCode int
 	}{
 		{
 			name:         "Ok",
@@ -105,7 +104,6 @@ func Test_profile(t *testing.T) {
 
 			assert.Equal(t, tt.expectedCode, w.Code)
 			assert.Equal(t, tt.expectedBody, w.Body.String())
-
 		})
 	}
 }

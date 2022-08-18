@@ -13,13 +13,12 @@ import (
 )
 
 func Test_auth(t *testing.T) {
-
 	tests := []struct {
 		name         string
 		header       string
 		inputHeader  string
-		expectedCode int
 		expectedBody string
+		expectedCode int
 	}{
 		{
 			name:         "Ok",
@@ -68,7 +67,6 @@ func Test_auth(t *testing.T) {
 
 			assert.Equal(t, tt.expectedCode, w.Code)
 			assert.Equal(t, tt.expectedBody, w.Body.String())
-
 		})
 	}
 }
