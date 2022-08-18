@@ -65,20 +65,7 @@ func Test_profile(t *testing.T) {
 			expectedCode: http.StatusOK,
 			expectedBody: `{"age":"30","dob":"01/01/1990","phone":"1234567890","username":"user-name"}`,
 		},
-		{
-			name:         "Wrong Input",
-			header:       "Username",
-			inputHeader:  "123",
-			expectedCode: http.StatusUnauthorized,
-			expectedBody: `{"message":"invalid username"}`,
-		},
-		{
-			name:         "No Header",
-			header:       "",
-			inputHeader:  "user-name",
-			expectedCode: http.StatusUnauthorized,
-			expectedBody: `{"message":"invalid username"}`,
-		},
+		// nothing to test more
 	}
 
 	for _, tt := range tests {

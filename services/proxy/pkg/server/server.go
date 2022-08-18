@@ -32,7 +32,6 @@ func (s *Server) Run() error {
 }
 
 func (s *Server) mainRouter() {
-	s.app.GET("/auth", s.auth)
 	s.app.GET("/microservice/name", s.microServiceName)
 	s.app.GET("/user/profile", s.userProfile)
 }
