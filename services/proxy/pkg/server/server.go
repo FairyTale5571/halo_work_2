@@ -36,8 +36,8 @@ func (s *Server) mainRouter() {
 	s.app.GET("/user/profile", s.userProfile)
 }
 
-func (s *Server) redirect(c *gin.Context, method, port string) {
-	u, err := url.Parse(fmt.Sprintf("%s:%s%s", os.Getenv("URL"), port, method))
+func (s *Server) redirect(c *gin.Context, service, port, method string) {
+	u, err := url.Parse(fmt.Sprintf("http://%s:%s/%s", service, port, method))
 	if err != nil {
 		c.AbortWithStatus(http.StatusInternalServerError)
 		return

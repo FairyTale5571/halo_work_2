@@ -9,12 +9,12 @@ import (
 )
 
 func (s *Server) microServiceName(c *gin.Context) {
-	s.redirect(c, "/microservice/name", os.Getenv("PORT_USER"))
+	s.redirect(c, "user", os.Getenv("PORT_USER"), "/microservice/name")
 }
 
 func (s *Server) checkAuth(username string) int {
 	client := &http.Client{}
-	req, err := http.NewRequest(http.MethodGet, fmt.Sprintf("%s:%s/auth", os.Getenv("URL"), os.Getenv("PORT_AUTH")), http.NoBody)
+	req, err := http.NewRequest(http.MethodGet, fmt.Sprintf("http://auth:%s/auth", os.Getenv("PORT_AUTH")), http.NoBody)
 	if err != nil {
 		return http.StatusInternalServerError
 	}
@@ -36,5 +36,5 @@ func (s *Server) userProfile(c *gin.Context) {
 		})
 		return
 	}
-	s.redirect(c, "/user/profile", os.Getenv("PORT_USER"))
+	s.redirect(c, "user", os.Getenv("PORT_USER"), "/user/profile")
 }
